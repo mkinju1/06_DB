@@ -18,7 +18,13 @@ ORDER BY TO_CHAR(ENTRANCE_DATE, 'YYYY-MM-DD') ASC;
 -- 춘 기술대학교의 교수 중 이름이 세 글자가 아닌 교수가 두 명 있다고 한다.
 -- 그 교수의 이름과 주민번호를 조회하는 SQL을 작성하시오.
 
-
+SELECT 
+    PROFESSOR_NAME,
+    PROFESSOR_SSN
+FROM 
+    TB_PROFESSOR
+WHERE 
+    LENGTH(PROFESSOR_NAME) != 3;
 
 
 
@@ -99,8 +105,17 @@ WHERE COACH_PROFESSOR_NO IS NULL;
 -- 단, 이때 출력화면의 헤더는 "년도", "년도 별 평점"이라고 찍히게 하고,
 -- 점수는 반올림하여 소수점 이하 한자리까지만 표시한다.
 
-
-
+SELECT
+    TERM_NO "년도",
+    ROUND(AVG(POINT), 1) "년도 별 평점"
+FROM
+    TB_GRADE
+WHERE
+    STUDENT_NO = 'A112113'
+GROUP BY
+    TERM_NO
+ORDER BY
+    TERM_NO;
 
 
 
