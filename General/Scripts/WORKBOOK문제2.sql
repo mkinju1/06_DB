@@ -105,17 +105,12 @@ WHERE COACH_PROFESSOR_NO IS NULL;
 -- 단, 이때 출력화면의 헤더는 "년도", "년도 별 평점"이라고 찍히게 하고,
 -- 점수는 반올림하여 소수점 이하 한자리까지만 표시한다.
 
-SELECT
-    TERM_NO "년도",
-    ROUND(AVG(POINT), 1) "년도 별 평점"
-FROM
-    TB_GRADE
-WHERE
-    STUDENT_NO = 'A112113'
-GROUP BY
-    TERM_NO
-ORDER BY
-    TERM_NO;
+SELECT SUBSTR(TERM_NO,1,4) AS 년도, ROUND(AVG(POINT),1) AS "년도 별 평점"
+FROM TB_GRADE
+WHERE STUDENT_NO = 'A112113'
+GROUP BY SUBSTR(TERM_NO,1,4)
+ORDER BY 1;
+
 
 
 
@@ -126,6 +121,15 @@ ORDER BY
 -- 학과 별 휴학생 수를 파악하고자 한다.
 -- 학과 번호와 휴학생 수를 조회하는 SQL을 작성하시오.
 
+SELECT DEPARTMENT_NO 학과코드명, SUM(DECODE(ABSENCE_YN, 'Y', 1, 0)) "휴학생 수"
+FROM TB_STUDENT
+GROUP BY DEPARTMENT_NO
+ORDER BY 1;
+
+SELECT DEPARTMENT_NO "학과코드명", COUNT(DECODE(ABSENCE_YN,'Y','Y','NO',0))"휴학생 수"
+FROM TB_STUDENT
+GROUP BY DEPARTMENT_NO
+ORDER BY DEPARTMENT_NO;
 
 
 
@@ -139,7 +143,11 @@ ORDER BY
 -- 춘 대학교에 다니는 동명이인인 학생들의 이름, 동명인 수를 조회하시오.
 
 
-
+SELECT STUDENT_NAME AS 동일이름, COUNT(*) AS "동명인 수"
+FROM TB_STUDENT
+GROUP BY STUDENT_NAME
+HAVING COUNT(*) > 1
+ORDER BY 1;
 
 
 
@@ -157,6 +165,11 @@ ORDER BY
 -- (단, 평점은 소수점 1자리까지만 반올림하여 표시한다.)
 
 
+SELECT NVL(SUBSTR(TERM_NO,1,4), ' ') AS 년도, NVL(SUBSTR(TERM_NO,5,2),' ') AS 학기, ROUND(AVG(POINT),1) AS 평점
+FROM TB_GRADE
+WHERE STUDENT_NO = 'A112113'
+GROUP BY ROLLUP(SUBSTR(TERM_NO,1,4),SUBSTR(TERM_NO,5,2))
+ORDER BY SUBSTR(TERM_NO,1,4);
 
 
 

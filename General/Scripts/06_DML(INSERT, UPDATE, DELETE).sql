@@ -466,3 +466,104 @@ SELECT * FROM EMPLOYEE3;
 FROM 테이블명
 WHERE 삭제하려는 행을 찾는 조건;
 */
+
+
+
+
+/*
+
+
+INSERT : 테이블의 행을 삽입하는 구문
+
+INSERT INTO 테이블명
+VALUES(모든 컬럼에 추가할 값);
+
+INSERT INTO 테이블명(컬럼1, 컬럼2, ...)
+VALUES(컬럼1 값, 컬럼2 값, ...);
+--> 값이 삽입되지않은 컬럼은 NULL
+
+* 서브쿼리 결과를 지정된 테이블에 모두 삽입
+INSERT INTO 테이블명
+AS (서브쿼리);
+
+------------------------------------------------
+
+UPDATE : 테이블에서 지정된 행의 컬럼 값을 수정하는 구문
+
+UPDATE 테이블명
+SET
+   컬럼명 = 수정할 값,
+   컬럼명 = 수정할 값,
+   ...
+WHERE
+   수정하려는 행을 지정하는 조건;
+
+------------------------------------------------
+
+DELETE : 테이블의 행을 삭제하는 구문
+
+DELETE 
+FROM 테이블명
+WHERE 
+   삭제하려는 행을 지정하는 조건;
+   
+오더바이 그룹바이 안됨
+
+
+-----------------------------------------------------
+
+
+* DML (Data Manipulation Language) : 데이터 조작 언어
+ - SELECT, INSERT, DELETE, MERGE
+ 	(SELECT 는 굳이 소분류로 나누면 DQL로 구분되어 나머지와 조금 다르게 구분)
+   
+* DQL (Data Query Language) : 데이터 질의 언어
+ - SELECT      
+          
+-------------------------------------------------------
+
+
+* TCL (Transition Control Language) : 트랜잭션 제어 언어
+	- COMMIT, ROLLBACK
+      
+         
+
+* DDL ( Data Definition Language) : 데이터 정의 언어            
+               
+                  
+                     
+                        
+                           
+                              
+                                 
+                                    
+                                       
+                                             
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
